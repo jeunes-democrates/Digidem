@@ -4,15 +4,9 @@
 
 
 
-{% block content %}{{ block.super }}
+{% block content %}
 
-<form id="siteForm" action="" method="post" data-stops="0">
-	{% csrf_token %}
-	{% bootstrap_form form %}
-	{% buttons %}
-		<button type="submit" class="btn btn-primary">Sauvegarder</button>
-	{% endbuttons %}
-</form>
+	{% include 'core.html' %}
 
 {% endblock content %}
 
