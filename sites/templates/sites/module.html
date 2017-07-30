@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap4 %}
+
+
+
+{% block content %}{{ block.super }}
+
+<h1>{{ object.name }}</h1>
+<p>Module</p>
+
+{% endblock content %}
+
+
+
+{% block scripts %} {{ block.super }}
+
+{% endblock scripts %}

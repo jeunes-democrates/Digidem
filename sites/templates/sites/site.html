@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap4 %}
+
+
+
+{% block content %}{{ block.super }}
+
+<form id="siteForm" action="" method="post" data-stops="0">
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	{% buttons %}
+		<button type="submit" class="btn btn-primary">Sauvegarder</button>
+	{% endbuttons %}
+</form>
+
+{% endblock content %}
+
+
+
+{% block scripts %} {{ block.super }}
+
+{% endblock scripts %}
