@@ -20,7 +20,6 @@ class Module(models.Model):
 	def get_absolute_url(self): return reverse('sites__module_detail', kwargs={'pk': self.key,})
 
 
-
 class Site(models.Model):
 
 	key = models.UUIDField(primary_key=True, max_length=32, default=uuid.uuid4, editable=False, verbose_name="clé")

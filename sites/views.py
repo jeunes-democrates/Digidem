@@ -44,6 +44,11 @@ class SiteCreate(LoginRequiredMixin, CreateView):
 		return super(SiteCreate, self).form_valid(form)
 
 
+def AddBasicModulesToSite(site):
+	SiteModule.objects.create(site=site, module=, data, order)
+	#Todo : create 3 modules
+	# add teh modules via fixtures
+
 
 class SiteUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
