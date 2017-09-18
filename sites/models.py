@@ -10,14 +10,14 @@ from .predicates import *
 
 
 
-class Module(models.Model):
+class ModuleTemplate(models.Model):
 
 	key = models.UUIDField(primary_key=True, max_length=32, default=uuid.uuid4, editable=False, verbose_name="clé")
 	name = models.CharField(max_length=255)
 	fields = models.CharField(max_length=5000, null=True, blank=True)
 
 	def __str__(self): return self.name
-	def get_absolute_url(self): return reverse('sites__module_detail', kwargs={'pk': self.key,})
+	def get_absolute_url(self): return reverse('sites__module_template_detail', kwargs={'pk': self.key,})
 
 
 class Site(models.Model):
@@ -29,7 +29,6 @@ class Site(models.Model):
 
 	name = models.CharField(max_length=60, verbose_name="titre")
 	description = models.CharField(max_length=160)
-	modules = models.ManyToManyField(Module, through="SiteModule", blank=True)
 	editors = models.ManyToManyField(User, related_name='sites_that_can_be_edited')
 
 #	theme = ***
@@ -46,10 +45,10 @@ rules.add_rule('can_update_site', is_site_editor | is_superuser)
 
 
 
-class SiteModule(models.Model):
+class Module(models.Model):
 
 	site = models.ForeignKey(Site)
-	module = models.ForeignKey(Module)
+	template = models.ForeignKey(ModuleTemplate)
 	data = models.CharField(max_length=5000, null=True, blank=True)
 	order = models.IntegerField()
 

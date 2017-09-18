@@ -9,5 +9,5 @@ urlpatterns = [
 #	url(r'^$', views.Dashboard, name='sites__dashboard'),
 	url(r'^$', views.SiteCreate.as_view(), name='sites__site_create'),
 	url(r'^site/{}/'.format(UUID_PK), views.SiteUpdate.as_view(), name='sites__site_update'),
-	url(r'^module/{}/'.format(UUID_PK), views.ModuleDetail.as_view(), name='sites__module_detail'),
+	url(r'^module-template/{}/'.format(UUID_PK), views.ModuleDetail.as_view(), name='sites__module_template_detail'),
 ]

@@ -23,9 +23,9 @@ from .models import *
 
 
 
-class ModuleDetail(LoginRequiredMixin, DetailView):
-	model = Module
-	template_name = 'sites/module.html'
+class ModuleTemplateDetail(LoginRequiredMixin, DetailView):
+	model = ModuleTemplate
+	template_name = 'sites/module-template.html'
 
 
 
@@ -45,7 +45,10 @@ class SiteCreate(LoginRequiredMixin, CreateView):
 
 
 def AddBasicModulesToSite(site):
-	SiteModule.objects.create(site=site, module=, data, order)
+	template = ModuleTemplate.objects.all()[0]
+	Module.objects.create(site=site, template=template, data='{"potato": 1}', order=1)
+	Module.objects.create(site=site, template=template, data='{"potato": 1}', order=2)
+	Module.objects.create(site=site, template=template, data='{"potato": 1}', order=3)
 	#Todo : create 3 modules
 	# add teh modules via fixtures
 
