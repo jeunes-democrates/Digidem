@@ -4,7 +4,7 @@ import os
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'wb8ua=u$k3cpv*b&#63-@9d!0h)mgozggi8-(%xvxg4i1a-5&x'
-DEBUG = False
+DEBUG = True
 ROOT_URLCONF = '_project.urls'
 WSGI_APPLICATION = '_project.wsgi.application'
 APPEND_SLASH = True
@@ -128,7 +128,7 @@ AUTHENTICATION_BACKENDS = (
 
 #--------------------------------------------------------------------
 
-INSTALLED_APPS += ['anymail',]
+INSTALLED_APPS += ['anymail',] # anymail
 
 EMAIL_SUBJECT_PREFIX = '[Digidem] ' # standard setting
 DEFAULT_FROM_EMAIL = 'Digidem <sites@jdem.fr>'
