@@ -1,0 +1,49 @@
+{% extends "meta.html" %}
+{% load static %}
+
+
+{% block head %}{{ block.super }}
+	{% include 'dashboard/css.html' %}
+{% endblock head %}
+
+{% block body %}
+
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		<a class="navbar-brand" href="#">
+			<img src="{%  static 'white.png' %}" style="height: 1.4rem; position: relative; top: -.1rem;"/> Digidem
+		</a>
+	</nav>
+
+	<div class="container-fluid">
+
+		<div class="row">
+
+			<nav class="col-sm-3 col-md-2 d-none d-sm-block sidebar">
+				{% block sidebar %}
+					{% include 'dashboard/sidebar.html' %}
+				{% endblock sidebar %}
+			</nav>
+		
+			<main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+	
+				{% block messages %}
+					{% include "messages.html" %}
+				{% endblock messages %}
+	
+				{% block content %}
+					<!-- Main content displayed here -->
+				{% endblock content %}
+	
+			</main>
+	
+		</div>
+	
+	</div>
+
+{% endblock body %}
+
+{% block scripts %} {{ block.super }}
+
+{% comment %} <script src="{% get_static_prefix %}js/example.js"></script> {% endcomment %} 
+
+{% endblock scripts %}

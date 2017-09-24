@@ -1,0 +1,52 @@
+<ul class="nav nav-pills flex-column">
+	<li class="nav-item">
+		<a class="nav-link active" href="#">Vue d'ensemble <span class="sr-only">(current)</span></a>
+	</li>
+	{% if user.is_staff %}
+	<li class="nav-item">
+		<a class="nav-link" href="#"><i class="fa fa-wrench"></i> Administration</a>
+	</li>
+	{% endif %}
+	<li class="nav-item">
+		<a class="nav-link" href="#">Analytics</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">Export</a>
+	</li>
+</ul>
+<ul class="nav nav-pills flex-column">
+	<li class="nav-item">
+		<a class="nav-link" href="#">Nav item</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">Nav item again</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">One more nav</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">Another nav item</a>
+	</li>
+</ul>
+<ul class="nav nav-pills flex-column">
+	<li class="nav-item">
+		<a class="nav-link" href="#">Nav item again</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">One more nav</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">Another nav item</a>
+	</li>
+</ul>
+<hr/>
+<footer class="small text-muted" style="padding: .5rem 1rem">
+	<p>
+		Plateforme mise à disposition par
+		<a target="_blank" href="http://m.me/antoningrele">Antonin Grêlé</a> et les
+		<a target="_blank" href="http://jeunes-democrates.org">Jeunes Démocrates</a>.
+	</p>
+	<p>
+		En cas de problème, contactez-nous : <a href="mailto:contact@jeunes-democrates.org?subject=Problème avec Digidem">contact@jeunes-democrates.org</a>
+	</p>
+</footer>

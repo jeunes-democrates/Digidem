@@ -1,0 +1,34 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% load bootstrap4 %}
+
+
+
+{% block content %}
+
+	<h1>Vue d'ensemble</h1>
+
+	{{ ifuser.sites_that_can_be_edited.all }}
+
+
+
+	{% if user.sites_that_can_be_edited.all %}
+		{% for site in user.sites_that_can_be_edited.all %}
+			{{ site.name }}
+			{{ site.description }}
+			{{ site.editors }}
+		{% endfor %}
+	{% else %}
+		<p>Vous n'avez pas encore de site !</p>
+		<p><a class="btn btn-primary" href="{% url 'sites__site_create' %}">Créer un site</a></p>
+	{% endif %}
+
+	{% include 'dashboard/core.html' %}
+
+{% endblock content %}
+
+
+
+{% block scripts %} {{ block.super }}
+
+{% endblock scripts %}

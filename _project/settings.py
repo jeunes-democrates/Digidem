@@ -122,19 +122,17 @@ INSTALLED_APPS += ['rules',] # rules
 # Manages row-level permissions
 
 AUTHENTICATION_BACKENDS = (
-    'rules.permissions.ObjectPermissionBackend',
-    'django.contrib.auth.backends.ModelBackend',
+	'rules.permissions.ObjectPermissionBackend',
+	'django.contrib.auth.backends.ModelBackend',
 )
 
 #--------------------------------------------------------------------
 
 INSTALLED_APPS += ['anymail',] # anymail
 
-EMAIL_SUBJECT_PREFIX = '[Digidem] ' # standard setting
-DEFAULT_FROM_EMAIL = 'Digidem <sites@jdem.fr>'
-EMAIL_SHOULD_FAIL_SILENTLY = True 
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.SendGridBackend, or...
 
-EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"  # or sendgrid.SendGridBackend, or...
+#--------------------------------------------------------------------
 
 ######################################################################
 

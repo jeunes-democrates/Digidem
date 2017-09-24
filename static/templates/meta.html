@@ -9,13 +9,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<meta property="og:image" content="http://covoiturage.jdem.fr/static/logo.png" />
-	<meta property="og:description" content="Générez votre site !" />
+	<meta property="og:image" content="http://sites.jdem.fr/static/logo.png" />
+	<meta property="og:description" content="Administration des sites des Jeunes Démocrates" />
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
 	<link rel="shortcut icon" href="{%  static 'favicon.png' %}">
 
-	<title>Digidem</title>
+	<title>
+		{% if page_title %}
+			{% block page_title %}{% endblock page_title %} | Digidem
+		{% else %}
+			Digidem
+		{% endif %}
+	</title>
 
 	{% block head %}{% endblock head %}
 
@@ -23,40 +29,19 @@
 
 <body style="background-color: #fafafa">
 
-<header>
-	{% block header %}{% endblock header %}
-</header>
+	{% block body %}{% endblock %}
 
-<div class="container-fluid">
-	<div class="row">
-		{% block sidebar %}
-			<!-- Sidebar -->
-		{% endblock sidebar %}
-		<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-			{% block messages %}
-				{% include "messages.html" %}
-			{% endblock messages %}
-			{% block content %}
-				<!-- Content -->
-			{% endblock content %}
-		</main>
-	</div>
-</div>
+</body>
 
-	
-
-	
 {% block scripts %}
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 	<script>
 		$('.alert').alert() // enable bootstrap 4 alert dismissal
 	</script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 {% endblock scripts %}
-
-</body>
 
 </html>

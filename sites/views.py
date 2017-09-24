@@ -16,6 +16,7 @@ from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.utils.html import strip_tags
 from django.views.generic import ListView, DetailView
+from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.edit import CreateView, UpdateView
 from rules.contrib.views import PermissionRequiredMixin
 
@@ -28,12 +29,15 @@ class ModuleTemplateDetail(LoginRequiredMixin, DetailView):
 	template_name = 'sites/module-template.html'
 
 
+class Dashboard(LoginRequiredMixin, TemplateView):
+	template_name = 'sites/overview.html'
+
 
 class SiteCreate(LoginRequiredMixin, CreateView):
 
 	model = Site
 	fields = ['name', 'description', ]
-	template_name = 'sites/site.html'
+	template_name = 'form.html'
 
 	def form_valid(self, form):
 		site = form.save(commit=False)
@@ -43,6 +47,10 @@ class SiteCreate(LoginRequiredMixin, CreateView):
 		site.editors.add(self.request.user)
 		return super(SiteCreate, self).form_valid(form)
 
+	def get_context_data(self, **kwargs):
+		context = super(SiteCreate, self).get_context_data(**kwargs)
+		context['page_title'] = "Créer un site"
+		return context
 
 def AddBasicModulesToSite(site):
 	template = ModuleTemplate.objects.all()[0]

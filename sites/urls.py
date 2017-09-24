@@ -7,7 +7,8 @@ UUID_PK = r'(?P<pk>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})
 
 urlpatterns = [
 #	url(r'^$', views.Dashboard, name='sites__dashboard'),
-	url(r'^$', views.SiteCreate.as_view(), name='sites__site_create'),
+	url(r'^$', views.Dashboard.as_view(), name='sites__dashboard'),
 	url(r'^site/{}/'.format(UUID_PK), views.SiteUpdate.as_view(), name='sites__site_update'),
-	url(r'^module-template/{}/'.format(UUID_PK), views.ModuleTemplateDetail.as_view(), name='sites__module_template_detail'),
+	url(r'^site/créer/'.format(UUID_PK), views.SiteCreate.as_view(), name='sites__site_create'),
+	url(r'^modèle-de-module/{}/'.format(UUID_PK), views.ModuleTemplateDetail.as_view(), name='sites__module_template_detail'),
 ]

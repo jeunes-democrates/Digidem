@@ -1,30 +1,48 @@
 {% extends "meta.html" %}
 {% load static %}
 
-
 {% block head %}{{ block.super }}
-	{% include 'dashboard-css.html' %}
+	<style>
+		#main { margin: 1rem auto; }
+	</style>
 {% endblock head %}
 
+{% block body %}
 
+	<div class="container-fluid">
+	
+		<div class="row">
+	
+			<div id="main" class="col-xl-4 col-lg-6 col-md-8 col-sm-10 col-xs-12">
+	
+				{% block messages %}
+					{% include "messages.html" %}
+				{% endblock messages %}
 
-{% block header %}
-	{% include 'nav.html' %}
-{% endblock header %}
+				{% if page_title %}
+					<h1>{{ page_title }}</h1>
+					{% if page_description %}<p class="page-description">{{ page_description }}</p>{% endif %}
+					<hr/>
+				{% endif %}
 
+	
+				{% block content %}
+					<!-- Main content displayed here -->
+				{% endblock content %}
+	
+			</div>
+	
+		</div>
+	
+	</div>
 
-{% block sidebar %}
-	{% include 'sidebar.html' %}
-{% endblock sidebar %}
-
-
-{% block content %}
-	<!-- Main content displayed here -->
-{% endblock content %}
-
+{% endblock body %}
 
 {% block scripts %} {{ block.super }}
 
-{% comment %} <script src="{% get_static_prefix %}js/notifications.js"></script> {% endcomment %} 
+{% comment %} <script src="{% get_static_prefix %}js/example.js"></script> {% endcomment %} 
 
 {% endblock scripts %}
+
+
+</html>
