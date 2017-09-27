@@ -28,8 +28,8 @@ class Site(models.Model):
 	date_updated = models.DateTimeField(auto_now=True)
 	created_by = models.ForeignKey(User, related_name='sites_created')
 
-	name = models.CharField(max_length=60, verbose_name="titre")
-	description = models.CharField(max_length=160)
+	name = models.CharField(max_length=60, verbose_name="titre", help_text="Max. 60 caractères. Idéalement au format \"Jeunes Démocrates de Corse\".")
+	description = models.CharField(max_length=160, help_text="Max. 160 caractères.", default="Groupe local représentant les jeunes adhérents du Mouvement Démocrate")
 	editors = models.ManyToManyField(User, related_name='sites_that_can_be_edited')
 
 #	theme = ***

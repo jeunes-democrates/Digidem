@@ -47,10 +47,9 @@ class SiteCreate(LoginRequiredMixin, CreateView):
 		site.editors.add(self.request.user)
 		return super(SiteCreate, self).form_valid(form)
 
-	def get_context_data(self, **kwargs):
-		context = super(SiteCreate, self).get_context_data(**kwargs)
-		context['page_title'] = "Créer un site"
-		return context
+	def title(self):
+		return "Créer un site"
+
 
 def AddBasicModulesToSite(site):
 	template = ModuleTemplate.objects.all()[0]
@@ -61,11 +60,28 @@ def AddBasicModulesToSite(site):
 	# add teh modules via fixtures
 
 
+
+class SitePreview(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+
+	model = Site
+	permission_required = 'site.update_site'
+	fields = ['name', 'description', ]
+	template_name = 'sites/preview/base.html'
+
+'''
+class SitePreview(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+
+	model = Site
+	permission_required = 'site.update_site'
+	fields = ['name', 'description', ]
+	template_name = 'sites/preview/base.html'
+'''
+
 class SiteUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 	model = Site
 	permission_required = 'site.update_site'
-	fields = ['name', 'description', 'modules', ]
+	fields = ['name', 'description', ]
 	template_name = 'sites/site.html'
 
 	def form_valid(self, form):
@@ -76,3 +92,5 @@ class SiteUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 			site_module = SiteModule(site = self.object, module = module,)
 			site_module.save()
 		return super(SiteUpdate, self).form_valid(form)
+
+

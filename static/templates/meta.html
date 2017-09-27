@@ -9,19 +9,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<meta property="og:image" content="http://sites.jdem.fr/static/logo.png" />
-	<meta property="og:description" content="Administration des sites des Jeunes Démocrates" />
-
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
 	<link rel="shortcut icon" href="{%  static 'favicon.png' %}">
 
 	<title>
-		{% if page_title %}
-			{% block page_title %}{% endblock page_title %} | Digidem
+		{% if view.title %}
+			{% block title %}{% endblock title %} | Digidem
 		{% else %}
 			Digidem
 		{% endif %}
 	</title>
+
+	{% if view.description %}
+		 <meta name="description" property="og:description" content="{{ view.description }}">
+	{% endif %}
+
+	<meta property="og:image" content="http://sites.jdem.fr/static/logo.png" />
 
 	{% block head %}{% endblock head %}
 

@@ -9,7 +9,7 @@
 {% block body %}
 
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-		<a class="navbar-brand" href="#">
+		<a class="navbar-brand" href="/">
 			<img src="{%  static 'white.png' %}" style="height: 1.4rem; position: relative; top: -.1rem;"/> Digidem
 		</a>
 	</nav>
@@ -44,6 +44,8 @@
 
 {% block scripts %} {{ block.super }}
 
-{% comment %} <script src="{% get_static_prefix %}js/example.js"></script> {% endcomment %} 
+	<style>
+		h1, h2, h3, h4, h5, h6 { margin-bottom: 1rem; }
+	</style>
 
 {% endblock scripts %}

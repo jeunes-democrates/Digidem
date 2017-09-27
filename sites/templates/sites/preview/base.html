@@ -1,0 +1,115 @@
+{% extends "meta.html" %}
+{% load static %}
+
+
+
+{% block head %}{{ block.super }}
+	<style>{% include 'sites/preview/styles.html' %}</style>
+{% endblock head %}
+
+
+
+{% block body %}
+
+	<div class="sheet" lang="fr">
+		<section class="header">
+			<h1 class="site-header"><span class="site-name">{{ site.name }}</span> <span class="site-description">{{ site.description }}</span></h1>
+		</section>
+		<section class="nav-section">
+			<nav class="nav">
+				<span class="nav__item"><a class="nav__link" href="#À propos">À propos</a></span> <span class="nav__spacer">·</span> <span class="nav__item"><a class="nav__link" href="#Notre Équipe">Notre équipe</a></span> <span class="nav__spacer">·</span> <span class="nav__item"><a class="nav__link" href="#Contact">Contact</a></span> <span class="nav__spacer">·</span>
+			</nav>
+		</section>
+		<section id="À propos">
+			<div class="site-textBlock">
+				<h2 class="section-heading textBlock__title">À propos</h2>
+				<div class="textBlock__text">
+					<p><strong>Lorem ipsum dolor sit amet</strong>, consectetur adipiscing elit. Morbi nec vehicula risus. Nam lacus neque, tristique in dignissim et, tristique vitae nibh. Phasellus hendrerit rhoncus eros, quis aliquam ex maximus sit amet.</p>
+					<p>Vestibulum sapien felis, consequat sit amet efficitur quis, congue et magna. Mauris tempor vehicula turpis, eu viverra quam egestas quis. In eu nulla eu sapien molestie feugiat ut sit amet metus. Fusce bibendum nunc risus, a ornare enim posuere in. Nunc hendrerit pharetra justo vitae gravida. Donec interdum vehicula auctor.</p>
+					<p>Vestibulum consequat ex vulputate, porta felis et, tincidunt ex. Nullam ac condimentum elit. Vestibulum at porttitor orci. Duis molestie blandit ipsum et molestie.</p>
+				</div>
+			</div>
+		</section>
+		<section id="Notre équipe">
+			
+			<div class="site-team">
+				<h2 class="section-heading team__title">Notre équipe</h2>
+				<div class="team__members swipeable-container dragscroll">
+					<div class="team__member swipeable-item">
+						<div class="team__member__title">
+							Président
+						</div><img class="team__member__portrait" src="https://twitter.com/LordSnow/profile_image?size=bigger">
+						<div class="team__member__name">
+							Jon Snow
+						</div>
+						<div class="team__member__description">
+							Etiam pulvinar volutpat justo a maximus. Knows nothing, proin quis elit ainterdum a nec urna.
+						</div><a class="team__member__twitter" href="https://twitter.com/LordSnow">@LordSnow</a>
+					</div>
+					<div class="team__member swipeable-item">
+						<div class="team__member__title">
+							Secrétaire
+						</div><img class="team__member__portrait" src="https://twitter.com/Daenerys/profile_image?size=bigger">
+						<div class="team__member__name">
+							Daenerys Targaryen
+						</div>
+						<div class="team__member__description">
+							Sed lorem dui, pharetra non hendrerit non, dapibus vel ligula.
+						</div><a class="team__member__twitter" href="https://twitter.com/Daenerys">@Daenerys</a>
+					</div>
+					<div class="team__member swipeable-item">
+						<div class="team__member__title">
+							Trésorier
+						</div><img class="team__member__portrait" src="https://twitter.com/GoT_Tyrion/profile_image?size=bigger">
+						<div class="team__member__name">
+							Tyrion Lannister
+						</div>
+						<div class="team__member__description">
+							Sed eu mi laoreet, vulputate tortor vitae, fermentum est. Donec tempor magna non elit sollicitudin fringilla.
+						</div><a class="team__member__twitter" href="https://twitter.com/GoT_Tyrion">@GoT_Tyrion</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="Contact">
+			<div class="site-contact">
+				<h2 class="section-heading contact__title">Contact</h2>
+				<div class="contact__intro">
+					Une question ? Adressez-nous un message !
+				</div>
+				<form class="contact__form pure-form pure-form-stacked">
+					<label for="message">Votre message:</label> 
+					<textarea class="contact__form__message pure-input-1" name="message" placeholder="..."></textarea> <label for="email">Votre adresse email :</label> <input class="contact__form__email pure-input-1" name="email" placeholder="@" type="email"> <button class="contact__form__submit pure-button pure-button-primary" type="submit">Envoyer</button>
+				</form>
+			</div>
+		</section>
+		<section>
+			<div class="site-textBlock">
+				<div class="textBlock__text text--center text--small">
+					<p>Retrouvez-nous sur <a href="https://twitter.com/J_Democrates">twitter</a> et <a href="https://facebook.com/jeunes-democrates">facebook</a> !</p>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<a id="editSite" href="{% url 'sites__site_update' site.key %}">
+		<i class="fa fa-pencil fa-2x"></i>
+	</a>
+
+{% endblock %}
+
+
+
+{% block scripts %} {{ block.super }}
+
+	<!-- NON-CRITICAL JAVASCRIPT -->
+	<!-- dragscroll for horizontal nav -->
+	<script src="http://asvd.github.io/jailed/demos/web/process/dragscroll.js"></script>
+	
+	<!-- NON-CRITICAL STYLESHEETS -->
+	<!-- font -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&subset=latin-ext" rel="stylesheet">
+	<!-- pure.css for forms -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css" rel="stylesheet">
+
+{% endblock scripts %}

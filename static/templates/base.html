@@ -19,9 +19,9 @@
 					{% include "messages.html" %}
 				{% endblock messages %}
 
-				{% if page_title %}
-					<h1>{{ page_title }}</h1>
-					{% if page_description %}<p class="page-description">{{ page_description }}</p>{% endif %}
+				{% if view.title %}
+					<h1>{{ view.title }}</h1>
+					{% if view.description %}<p class="page-description">{{ view.description }}</p>{% endif %}
 					<hr/>
 				{% endif %}
 
@@ -40,7 +40,10 @@
 
 {% block scripts %} {{ block.super }}
 
-{% comment %} <script src="{% get_static_prefix %}js/example.js"></script> {% endcomment %} 
+	<style>
+		.help-block { font-size: .8em; margin-top: .25rem; opacity: .65; font-style: italic; }
+		.btn:hover { cursor: pointer; }
+	</style>
 
 {% endblock scripts %}
 
