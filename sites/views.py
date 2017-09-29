@@ -17,7 +17,7 @@ from django.utils.decorators import method_decorator
 from django.utils.html import strip_tags
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import TemplateView, RedirectView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from rules.contrib.views import PermissionRequiredMixin
 
 from .models import *
@@ -82,7 +82,12 @@ class SiteUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 	model = Site
 	permission_required = 'site.update_site'
 	fields = ['name', 'description', ]
-	template_name = 'sites/site.html'
+	template_name = 'sites/site_update.html'
+
+	def title(self): return "Modifier mon site"
+	def form_title(self): return "Paramètres"
+	def form_submit_button_icon(self): return "floppy-o"
+	def form_submit_button_label(self): return "Enregistrer"
 
 	def form_valid(self, form):
 		self.object = form.save(commit=False)
@@ -94,3 +99,25 @@ class SiteUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 		return super(SiteUpdate, self).form_valid(form)
 
 
+
+class ModuleUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+
+	model = Module
+	permission_required = 'module.site.update_site'
+	fields = ['data', ]
+	template_name = 'form.html'
+
+	def get_success_url(self):
+		return reverse('sites__site_update', kwargs={'pk': self.site.key,})
+
+
+
+
+class ModuleDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+
+	model = Module
+	permission_required = 'module.site.update_site'
+	template_name = 'form.html'
+
+	def get_success_url(self):
+		return reverse('sites__site_update', kwargs={'pk': self.site.key,})

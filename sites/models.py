@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import os, datetime, uuid, rules
+import os, datetime, uuid, json, rules
 from datetime import datetime, timedelta
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
@@ -41,17 +41,41 @@ class Site(models.Model):
 rules.add_rule('can_update_site', is_site_editor | is_superuser)
 
 
-# class SiteEdit(models.Model):
-	# tracks editing history of sites
-
-
 
 class Module(models.Model):
 
 	site = models.ForeignKey(Site)
 	template = models.ForeignKey(ModuleTemplate)
-	data = models.CharField(max_length=5000, null=True, blank=True)
+	data = models.CharField(max_length=100000, null=True, blank=True)
 	order = models.IntegerField()
+
+	def __str__(self):
+		if self.title() :
+			return "{} ({})".format(self.title(), self.template)
+		else : 
+			return self.template
+
+	def title(self):
+		result = self.fields()['Titre']
+		if result :
+			return result
+		else :
+			return None
+
+	def fields(self):
+		if self.data :
+			return json.loads(self.data)
+		else :
+			return None
+
+		result = {
+			'name': self.template,
+			'type': self.template,
+			}
+		if self.data :
+			data = json.loads(self.data)
+			if data['Titre'] :
+				return "{} ({})".format(data['Titre'], self.template)
 
 	class Meta :
 		ordering = ['order',]

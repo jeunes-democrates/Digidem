@@ -1,0 +1,23 @@
+{% extends "form.html" %}
+{% load staticfiles %}
+
+{% block after_the_form %}
+
+	<hr/>
+
+	<h2>Modules</h2>
+
+	<div class="modules">
+		{% for module in object.module_set.all %}
+			<div class="module">
+				<div class="module__title">{{ module.title }}</div>
+				<div>{{ module.template }}</div>
+				<div>
+					<a href="{% url 'sites__module_update' module.pk %}">Modifier</a>
+					<a href="">Supprimer</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock after_the_form %}

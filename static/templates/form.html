@@ -5,12 +5,40 @@
 
 {% block content %}{{ block.super }}
 
-	<div class="card-block">
-		<form class="form-horizontal" method="post" action="#">
-			{% csrf_token %}			
-			{% bootstrap_form form %}
-			<button class="btn btn-block btn-primary"><i class="fa fa-check"></i> Valider</button>
-		</form>
-	</div>
+	{% if view.form_title %}<h2>{{ view.form_title }}</h2>{% endif%}
+
+	<form class="form-horizontal" method="post" action="#">
+
+		{% csrf_token %}			
+
+		{% comment %} Standard form based on model fields {% endcomment %}
+		{% bootstrap_form form %}
+
+		{% comment %} Customiseable additional elements {% endcomment %}
+		{% block additional_form_elements %}{% endblock additional_form_elements %}
+
+		{% comment %} Customiseable submit button {% endcomment %}
+		<button class="btn btn-block btn-primary">
+			<span>
+				{% if view.form_submit_button_icon %}
+					<i class="fa fa-{{ view.form_submit_button_icon }}"></i>
+				{% else %}
+					<i class="fa fa-check"></i>
+				{% endif %}
+			</span>
+			<span>
+				{% if view.form_submit_button_label %}
+					{{ view.form_submit_button_label }}
+				{% else %}
+					Valider
+				{% endif %}
+			</span>
+		</button>
+
+	</form>
+
+	{% comment %} Customiseable additional elements {% endcomment %}
+	{% block after_the_form %}{% endblock after_the_form %}
+
 
 {% endblock content %}
