@@ -1,0 +1,30 @@
+<div class="form-group">
+	<label>{{ field.name }}</label>
+
+	{% for key, value in module.get_values.items %}
+
+		{% if field.slug == key %}
+
+			{% if field.type == "text_short" %}
+				<input name="{{field.slug}}" value="{{value}}" class="form-control" maxlength="160" required>
+
+			{% elif field.type == "text_markdown" %}
+				<textarea name="{{field.slug}}" class="form-control" maxlength="5000" rows="12" required>{{value}}</textarea>
+
+			{% elif field.type == "email" %}
+				<input name="{{field.slug}}" value="{{value}}" class="form-control" maxlength="160" required>
+
+			{% else %}
+				Erreur dans le template de ce module : le champ de type "{{ field.type }}" n'existe pas.
+
+			{% endif %}
+
+		{% endif %}
+
+	{% endfor %}
+
+
+	{% if field.help_text %}
+		<small id="emailHelp" class="form-text text-muted">{{ field.help_text|safe }}</small>
+	{% endif %}
+</div>

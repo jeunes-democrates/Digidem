@@ -11,8 +11,6 @@
 
 {% block content %}
 
-	<h1>Vue d'ensemble</h1>
-
 	{% if user.sites_that_can_be_edited.all %}
 		{% for site in user.sites_that_can_be_edited.all %}
 			<div class="card site">

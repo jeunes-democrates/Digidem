@@ -1,4 +1,4 @@
-import random, ast
+import random, ast, bleach
 from datetime import datetime, timedelta
 from django.db.models import *
 from django.conf import settings
@@ -26,7 +26,7 @@ from .models import *
 
 class ModuleTemplateDetail(LoginRequiredMixin, DetailView):
 	model = ModuleTemplate
-	template_name = 'sites/module-template.html'
+	template_name = 'sites/module_template.html'
 
 
 class Dashboard(LoginRequiredMixin, TemplateView):
@@ -89,17 +89,8 @@ class SiteUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 	def form_submit_button_icon(self): return "floppy-o"
 	def form_submit_button_label(self): return "Enregistrer"
 
-	def form_valid(self, form):
-		self.object = form.save(commit=False)
-		SiteModule.objects.filter(site = self.object).delete()
-		for module in form.cleaned_data['modules']:
-			# Create SiteModules to fits
-			site_module = SiteModule(site = self.object, module = module,)
-			site_module.save()
-		return super(SiteUpdate, self).form_valid(form)
 
-
-
+'''
 class ModuleUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 	model = Module
@@ -108,7 +99,24 @@ class ModuleUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 	template_name = 'form.html'
 
 	def get_success_url(self):
-		return reverse('sites__site_update', kwargs={'pk': self.site.key,})
+		return reverse('sites__site_update', kwargs={'pk': self.object.site.key, })
+'''
+
+
+def module_update(request, pk):
+
+	module = get_object_or_404(Module, pk=pk)
+
+	data = {}
+
+	if request.method == 'POST':
+		for field in module.template.get_fields():
+			slug = field['slug']
+			data[slug] = bleach.clean(request.POST.get(slug))
+		module.data = json.dumps(data)
+		module.save()
+
+	return redirect('sites__site_update', pk=module.site.key)
 
 
 

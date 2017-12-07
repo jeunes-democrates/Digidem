@@ -3,21 +3,31 @@
 
 {% block after_the_form %}
 
-	<hr/>
-
-	<h2>Modules</h2>
-
-	<div class="modules">
-		{% for module in object.module_set.all %}
-			<div class="module">
-				<div class="module__title">{{ module.title }}</div>
-				<div>{{ module.template }}</div>
-				<div>
-					<a href="{% url 'sites__module_update' module.pk %}">Modifier</a>
-					<a href="">Supprimer</a>
+	<div class="card mt-3">
+		<div class="card-header">
+			<h2>Modules</h2>
+		</div>
+		<div class="modules card-body">
+			{% for module in object.module_set.all %}
+				<div class="module">
+					<h4 class="module__title">{{ forloop.counter }}. {{ module.template }}</h4>
+					<form action="{% url 'sites__module_update' module.pk %}" method="post">
+					{% csrf_token %}
+					{% for field in module.template.get_fields %}
+						{% include 'sites/module_field.html' with module=module %}
+					{% endfor %}
+						<p>
+							<button type="submit" class="btn btn-sm btn-secondary"><i class="fa fa-floppy-o"></i> Enregistrer</button>
+							<a class="btn btn-sm btn-secondary" href=""><i class="fa fa-trash"></i> Supprimer</a>
+						</p>
+					</form>
 				</div>
+				<hr/>
+			{% endfor %}
+			<div class="text-right">
+				<a class="btn btn-secondary" href=""><i class="fa fa-plus"></i> Ajouter un module</a>
 			</div>
-		{% endfor %}
+		</div>
 	</div>
 
 {% endblock after_the_form %}

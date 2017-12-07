@@ -1,0 +1,17 @@
+cd Digidem
+echo
+echo [Pulling from git]
+git pull
+echo
+echo [Collecting static files]
+workon Digidem
+python manage.py collectstatic --noinput
+echo
+echo [Migrating]
+python manage.py migrate
+echo
+echo [Testing new setup]
+python manage.py test
+echo
+echo [Reloading web app]
+touch /var/www/sites_jdem_fr_wsgi.py

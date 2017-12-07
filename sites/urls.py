@@ -14,7 +14,7 @@ urlpatterns = [
 	url(r'^site/créer/', views.SiteCreate.as_view(), name='sites__site_create'),
 	url(r'^site/{}/modifier/'.format(UUID_PK), views.SiteUpdate.as_view(), name='sites__site_update'),
 	url(r'^site/{}/'.format(UUID_PK), views.SitePreview.as_view(), name='sites__site_preview'),
+	url(r'^module/{}/$'.format(INTEGER_PK), views.module_update, name='sites__module_update'),
 	url(r'^module/{}/supprimer'.format(INTEGER_PK), views.ModuleDelete.as_view(), name='sites__module_delete'),
-	url(r'^module/{}/'.format(INTEGER_PK), views.ModuleUpdate.as_view(), name='sites__module_update'),
 	url(r'^modèle-de-module/{}/'.format(UUID_PK), views.ModuleTemplateDetail.as_view(), name='sites__module_template_detail'),
 ]

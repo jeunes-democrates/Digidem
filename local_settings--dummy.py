@@ -9,7 +9,7 @@ EMAIL_HOST = 'smtp.jdem.fr'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sites@jdem.fr'
 EMAIL_HOST_PASSWORD = '???'
-EMAIL_ROOT = 'http://localhost:8015'
+EMAIL_ROOT = 'http://localhost:8012'
 EMAIL_FROM = DEFAULT_FROM_EMAIL
 
 # ANYMAIL

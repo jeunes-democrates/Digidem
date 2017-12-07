@@ -6,6 +6,8 @@
 				{
 					"name":
 						"Titre",
+					"slug":
+						"title",
 					"type":
 						"text_short",
 					"default":
@@ -14,6 +16,8 @@
 				{
 					"name":
 						"Texte",
+					"slug":
+						"text",
 					"type":
 						"text_markdown",
 					"default":

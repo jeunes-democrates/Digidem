@@ -4,7 +4,8 @@
 {% block head %}{{ block.super }}
 	<style>
 		#main { margin: 1rem auto; }
-	</style>
+		.help-block { font-size: .8em; margin-top: .25rem; opacity: .65; font-style: italic; }
+		.btn:hover { cursor: pointer; }	</style>
 {% endblock head %}
 
 {% block body %}
@@ -20,11 +21,11 @@
 				{% endblock messages %}
 
 				{% if view.title %}
-					<h1>{{ view.title }}</h1>
-					{% if view.description %}<p class="page-description">{{ view.description }}</p>{% endif %}
-					<hr/>
+					<header>
+						<h1>{{ view.title }}</h1>
+						{% if view.description %}<p class="page-description">{{ view.description }}</p>{% endif %}
+					</header>
 				{% endif %}
-
 	
 				{% block content %}
 					<!-- Main content displayed here -->
@@ -37,15 +38,5 @@
 	</div>
 
 {% endblock body %}
-
-{% block scripts %} {{ block.super }}
-
-	<style>
-		.help-block { font-size: .8em; margin-top: .25rem; opacity: .65; font-style: italic; }
-		.btn:hover { cursor: pointer; }
-	</style>
-
-{% endblock scripts %}
-
 
 </html>

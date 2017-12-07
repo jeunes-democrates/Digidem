@@ -2,7 +2,7 @@ import rules
 
 @rules.predicate
 def is_site_editor(user, site):
-	return user in site.editors
+	return user in site.editors.all()
 
 @rules.predicate
 def is_superuser(user):
