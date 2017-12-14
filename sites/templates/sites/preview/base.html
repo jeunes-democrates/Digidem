@@ -17,19 +17,30 @@
 		</section>
 		<section class="nav-section">
 			<nav class="nav">
+				{% for module in site.module_set.all %}
+					<span class="nav__item"><a class="nav__link" href="#À propos">{{ module.get_title }}</a></span> <span class="nav__spacer">·</span> 
+				{% endfor %}
 				<span class="nav__item"><a class="nav__link" href="#À propos">À propos</a></span> <span class="nav__spacer">·</span> <span class="nav__item"><a class="nav__link" href="#Notre Équipe">Notre équipe</a></span> <span class="nav__spacer">·</span> <span class="nav__item"><a class="nav__link" href="#Contact">Contact</a></span> <span class="nav__spacer">·</span>
 			</nav>
 		</section>
-		<section id="À propos">
-			<div class="site-textBlock">
-				<h2 class="section-heading textBlock__title">À propos</h2>
-				<div class="textBlock__text">
-					<p><strong>Lorem ipsum dolor sit amet</strong>, consectetur adipiscing elit. Morbi nec vehicula risus. Nam lacus neque, tristique in dignissim et, tristique vitae nibh. Phasellus hendrerit rhoncus eros, quis aliquam ex maximus sit amet.</p>
-					<p>Vestibulum sapien felis, consequat sit amet efficitur quis, congue et magna. Mauris tempor vehicula turpis, eu viverra quam egestas quis. In eu nulla eu sapien molestie feugiat ut sit amet metus. Fusce bibendum nunc risus, a ornare enim posuere in. Nunc hendrerit pharetra justo vitae gravida. Donec interdum vehicula auctor.</p>
-					<p>Vestibulum consequat ex vulputate, porta felis et, tincidunt ex. Nullam ac condimentum elit. Vestibulum at porttitor orci. Duis molestie blandit ipsum et molestie.</p>
-				</div>
-			</div>
-		</section>
+
+		{% for module in site.module_set.all %}
+			<section>
+
+				{% if module.template.slug == "texte-libre" %}
+					{% include 'sites/modules/texte-libre.html' %}
+
+				{% elif module.template.slug == "notre-équipe" %}
+					{% include 'sites/modules/notre-équipe.html' %}
+
+				{% elif module.template.slug == "formulaire-de-contact" %}
+					{% include 'sites/modules/formulaire-de-contact.html' %}
+
+				{% endif %}
+				
+			</section>
+		{% endfor %}
+		
 		<section id="Notre équipe">
 			
 			<div class="site-team">

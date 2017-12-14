@@ -1,29 +1,118 @@
 [
-	{ "model": "sites.moduleTemplate",
+	{
+		"model": "sites.moduleTemplate",
 		"fields": {
-			"name": "Texte libre",
+			"slug": "texte-libre",
+			"description": "Un simple bloc doté d'un titre et d'un texte libre. Idéal pour une section 'à propos', par exemple.",
 			"fields": [
 				{
-					"name":
-						"Titre",
-					"slug":
-						"title",
-					"type":
-						"text_short",
-					"default":
-						"À propos"
+					"name": "Titre",
+					"slug": "title",
+					"type": "text_short",
+					"default": "À propos",
+					"required": true
 				},
 				{
-					"name":
-						"Texte",
-					"slug":
-						"text",
-					"type":
-						"text_markdown",
-					"default":
-						"Notre objectif est la défense et le développement des valeurs démocrates sur le territoire Westerosi. Les libertés individuelles et économiques, la responsabilité de chaque individu, la justice sociale, l'Europe et l'environnement sont au coeur de notre engagement.",
-					"help_text":
-						"Utilisez la syntaxe <a href='https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet' target='_blank'>Markdown</a>, par exemple pour écrire en <strong>**gras**</strong> ou en <em>__italique__</em>, ou encore pour insérer des liens, des images ou des titres."
+					"name": "Texte",
+					"slug": "text",
+					"type": "text_markdown",
+					"default": "Notre objectif est la défense et le développement des valeurs démocrates sur le territoire Westerosi. Les libertés individuelles et économiques, la responsabilité de chaque individu, la justice sociale, l'Europe et l'environnement sont au coeur de notre engagement.",
+					"help_text": "Utilisez la syntaxe <a href='https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet' target='_blank'>Markdown</a>, par exemple pour écrire en <strong>**gras**</strong> ou en <em>__italique__</em>, ou encore pour insérer des liens, des images ou des titres.",
+					"required": false
+				}
+			]
+		}
+	},
+	{
+		"model": "sites.moduleTemplate",
+		"fields": {
+			"slug": "notre-équipe",
+			"description": "Un bloc qui affiche de 2 à 8 membres de votre équipe. La photo est prise de Twitter : il faut donc demander aux membres de l'équipe de se créer un compte !",
+			"fields": [
+				{
+					"name": "Titre",
+					"slug": "title",
+					"type": "text_short",
+					"default": "Notre équipe",
+					"required": true
+				},
+				{
+					"name": "Membre #1",
+					"slug": "member1",
+					"type": "text_short",
+					"default": "Bayrou",
+					"help_text": "Le compte Twitter de la personne, sans le '@'.",
+					"required": true
+				},
+				{
+					"name": "Membre #2",
+					"slug": "member2",
+					"type": "text_short",
+					"required": true
+				},
+				{
+					"name": "Membre #3",
+					"slug": "member3",
+					"type": "text_short",
+					"required": false
+				},
+				{
+					"name": "Membre #4",
+					"slug": "member4",
+					"type": "text_short",
+					"required": false
+				},
+				{
+					"name": "Membre #5",
+					"slug": "member5",
+					"type": "text_short",
+					"required": false
+				},
+				{
+					"name": "Membre #6",
+					"slug": "member6",
+					"type": "text_short",
+					"required": false
+				},
+				{
+					"name": "Membre #7",
+					"slug": "member7",
+					"type": "text_short",
+					"required": false
+				},
+				{
+					"name": "Membre #8",
+					"slug": "member8",
+					"type": "text_short",
+					"required": false
+				}
+			]
+		}
+	},
+	{
+		"model": "sites.moduleTemplate",
+		"fields": {
+			"slug": "formulaire-de-contact",
+			"description": "Un formulaire permettant aux visiteurs de vous adresser un message, envoyé à l'adresse email que vous spécifiez.",
+			"fields": [
+				{
+					"name": "Titre",
+					"slug": "title",
+					"type": "text_short",
+					"default": "Contact"
+				},
+				{
+					"name": "Accroche",
+					"slug": "tagline",
+					"type": "text_short",
+					"default": "Une question ? Adressez-nous un message ! ",
+					"help_text": "Ex: 'Une question ? Adressez-nous un message !'"
+				},
+				{
+					"name": "Email",
+					"slug": "email",
+					"type": "email",
+					"help_text": "C'est l'adresse à laquelle sera envoyé le message."
 				}
 			]
 		}

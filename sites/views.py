@@ -129,3 +129,24 @@ class ModuleDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 
 	def get_success_url(self):
 		return reverse('sites__site_update', kwargs={'pk': self.site.key,})
+
+
+
+class ChooseModule(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+
+	model = Site
+	permission_required = 'site.update_site'
+	template_name = 'sites/choose_module.html'
+
+	def modules(self):
+		return ModuleTemplate.objects.all()
+
+
+
+
+def AddModule(request, pk, slug):
+	site = get_object_or_404(Site, pk=pk)
+	template = get_object_or_404(ModuleTemplate, slug=slug)
+	new_module = Module(site=site, template=template)
+	new_module.save()
+	return redirect('sites__site_update', pk=pk)

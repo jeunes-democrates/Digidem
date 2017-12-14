@@ -5,10 +5,15 @@
 
 {% block content %}{{ block.super }}
 
+	{% comment %} Customizable additional elements {% endcomment %}
+	{% block before_the_form %}{% endblock before_the_form %}
+
 	<div class="card mt-3">
+		{% if view.form_title %}
 		<div class="card-header">
-			{% if view.form_title %}<h2>{{ view.form_title }}</h2>{% endif %}
+			<h2>{{ view.form_title }}</h2>
 		</div>
+		{% endif %}
 		<div class="card-body">
 			<form class="form-horizontal" method="post" action="#">
 
@@ -42,7 +47,7 @@
 		</div>
 	</div>
 
-	{% comment %} Customiseable additional elements {% endcomment %}
+	{% comment %} Customizable additional elements {% endcomment %}
 	{% block after_the_form %}{% endblock after_the_form %}
 
 {% endblock content %}

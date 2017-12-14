@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}{{ block.super }}
+
+	<h1>Ajouter un module</h1>
+
+	{% for module in view.modules %}
+
+		<div class="card mt-3">
+			<div class="card-body">
+				<h2>{{ module.slug }}</h2>
+				<p>{{ module.description }}</p>
+				<p><a class="btn btn-primary btn-sm" href="{% url 'sites__add_module' pk=object.pk slug=module.slug %}"><i class="fa fa-plus"></i> Ajouter</a></p>
+			</div>
+		</div>
+
+	{% endfor %}
+
+{% endblock content %}
